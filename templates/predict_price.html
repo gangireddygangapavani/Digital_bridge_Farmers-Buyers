@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Product Price</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Predict Product Price</h2>
+        <form method="POST">
+            <input type="text" name="product_name" placeholder="Product Name" required>
+            <textarea name="description" placeholder="Product Description" required></textarea>
+            <button type="submit">Predict Price</button>
+        </form>
+        {% if predicted_price %}
+        <div class="result">
+            Predicted Price: ₹{{ predicted_price|round(2) }}
+        </div>
+        {% endif %}
+        <br>
+        <a href="{{ url_for('farmer_dashboard') }}">Back to Dashboard</a>
+    </div>
+</body>
+</html>
